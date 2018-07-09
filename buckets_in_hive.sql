@@ -27,12 +27,6 @@ hive> SET hive.exec.max.dynamic.partitions.pernode=5000;
 hive> SET hive.enforce.bucketing =true;
 hive> SET hive.exec.max.dynamic.partition=true;
 
-INSERT OVERWRITE TABLE stocks_bucket
-PARTITION (exch_name='ABCSE',yr)
-SELECT *,year(ymd)
-FROM stocks WHERE year(ymd) IN('2001','2002','2003') and symbol like 'B%';
-
-
 hive> INSERT OVERWRITE TABLE stocks_bucket
     > PARTITION (exch_name='ABCSE',yr)
     > SELECT *,year(ymd)
